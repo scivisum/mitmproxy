@@ -1,7 +1,7 @@
 # Release History
 
 ## Unreleased: mitmproxy next
-
+* Fix flow capture when using upstream proxy mode.
 
 
 ## 07 April 2023: mitmproxy 9.0.1

@@ -141,9 +141,10 @@ class FlowCaptureMixin(object):
 
         har_entry['timings'] = t
 
-        if flow.server_conn.connected:
+        if flow.server_conn.peername:
             har_entry["serverIPAddress"] = str(
-                flow.server_conn.ip_address[0])
+                flow.server_conn.peername[0]
+            )
 
         flow.set_har_entry(har_entry)
         logging.debug('Populated har entry for response: {}, entry: {}'.format(flow.request.url, str(har_entry)))
