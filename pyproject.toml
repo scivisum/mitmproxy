@@ -58,6 +58,15 @@ dependencies = [
     "wsproto>=1.0,<=1.2.0",
     "publicsuffix2>=2.20190812,<=2.20191221",
     "zstandard>=0.15,<=0.23.0",
+    # browserup deps
+    "falcon>=3.1.0",
+    "falcon-apispec@git+https://github.com/browserup/falcon-apispec#egg=falcon-apispec",
+    "marshmallow>=3.0.0",
+    "falcon-apispec>=0.4.0",
+    "python-dateutil>=2.8.1",
+    "glom>=20.11.0",
+    "jsonschema>=3.2.0",
+    "jsonpath_ng>=1.5.3",
 ]
 
 [project.optional-dependencies]
