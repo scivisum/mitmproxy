@@ -747,6 +747,12 @@ class HttpStream(layer.Layer):
             self.flow.server_conn.transport_protocol,
         )
         if err:
+            # tribe: connection can be None in cases of certificate errors.
+            if connection:
+                # tribe:
+                # save the failed connection to the flow, so we can access the connection times.
+                self.flow.server_conn = connection
+
             yield from self.handle_protocol_error(
                 ResponseProtocolError(self.stream_id, err)
             )
@@ -1056,6 +1062,7 @@ class HttpLayer(layer.Layer):
                         self.waiting_for_establishment[connection].append(event)
                         return
                     elif connection.error:
+                        # tribe comment: reuse certificate errors to avoid unnecessary connections
                         stream = self.command_sources.pop(event)
                         yield from self.event_to_child(
                             stream,
@@ -1086,6 +1093,7 @@ class HttpLayer(layer.Layer):
             context_connection_matches and self.context.server.connected
         )
         if context_connection_matches and self.context.server.error:
+            # tribe comment: reuse certificate errors to avoid unnecessary connections
             stream = self.command_sources.pop(event)
             yield from self.event_to_child(
                 stream,
@@ -1145,7 +1153,8 @@ class HttpLayer(layer.Layer):
 
         reply: tuple[None, str] | tuple[Connection, None]
         if command.err:
-            reply = (None, command.err)
+            # tribe: return the connection that errored, so we can access the connection times.
+            reply = (command.connection, command.err)
         else:
             reply = (command.connection, None)
 
