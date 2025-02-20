@@ -38,9 +38,6 @@ class FlowCaptureMixin(object):
         har_entry = flow.get_har_entry()
 
         har_entry['startedDateTime'] = datetime.fromtimestamp(flow.request.timestamp_start, timezone.utc).isoformat()
-
-        logging.info('Har startedDateTime for request: {} is {}'.format(full_url, har_entry['startedDateTime']))
-
         har_request = HarBuilder.entry_request()
         har_request['method'] = flow.request.method
         har_request['url'] = full_url
