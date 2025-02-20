@@ -233,6 +233,7 @@ exclude = [
   "mitmproxy/utils/bits.py",
   "mitmproxy/utils/pyinstaller/*",
   "mitmproxy/utils/vt_codes.py",
+  "mitmproxy/addons/browserup/*",
 ]
 
 [tool.mypy]
