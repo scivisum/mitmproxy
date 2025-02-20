@@ -16,6 +16,7 @@ def check_src_files_have_test():
         "mitmproxy/tools/",
         "mitmproxy/platform/",
         "mitmproxy/utils/pyinstaller/",
+        "mitmproxy/addons/browserup/"
     ]
     src_files = glob.glob("mitmproxy/**/*.py", recursive=True)
     src_files = [f for f in src_files if os.path.basename(f) != "__init__.py"]
@@ -38,6 +39,7 @@ def check_test_files_have_src():
         "test/mitmproxy/net/data/",
         "/tservers.py",
         "/conftest.py",
+        "mitmproxy/addons/browserup/"
     ]
     test_files = glob.glob("test/mitmproxy/**/*.py", recursive=True)
     test_files = [f for f in test_files if os.path.basename(f) != "__init__.py"]
