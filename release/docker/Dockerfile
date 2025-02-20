@@ -10,6 +10,11 @@ RUN apt-get update \
     && apt-get install -y --no-install-recommends gosu nano \
     && rm -rf /var/lib/apt/lists/*
 
+# install git, browserup installs falcon-apispec directly from github
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends git \
+    && rm -rf /var/lib/apt/lists/*
+
 RUN mkdir /home/mitmproxy/.mitmproxy \
     && chown mitmproxy:mitmproxy /home/mitmproxy/.mitmproxy
 
