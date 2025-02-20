@@ -1,9 +1,10 @@
-import re
-from glom import glom
 import json
+import re
+
+from glom import glom
+from jsonpath_ng import parse
 from jsonschema import validate
 from jsonschema import ValidationError
-from jsonpath_ng import parse
 
 
 class HarVerifications:

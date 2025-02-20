@@ -1,15 +1,17 @@
-from pathlib import Path
-import os
 import glob
 import json
-import falcon
 import logging
+import os
+from pathlib import Path
 
-from mitmproxy.addons.browserup.har.har_verifications import HarVerifications
-from mitmproxy.addons.browserup.har.har_capture_types import HarCaptureTypes
-
-from mitmproxy.addons.browserup.har.har_schemas import ErrorSchema, CounterSchema, MatchCriteriaSchema
+import falcon
 from marshmallow import ValidationError
+
+from mitmproxy.addons.browserup.har.har_capture_types import HarCaptureTypes
+from mitmproxy.addons.browserup.har.har_schemas import CounterSchema
+from mitmproxy.addons.browserup.har.har_schemas import ErrorSchema
+from mitmproxy.addons.browserup.har.har_schemas import MatchCriteriaSchema
+from mitmproxy.addons.browserup.har.har_verifications import HarVerifications
 
 
 class HealthCheckResource:
