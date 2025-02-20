@@ -18,6 +18,9 @@ RUN apt-get update \
 RUN mkdir /home/mitmproxy/.mitmproxy \
     && chown mitmproxy:mitmproxy /home/mitmproxy/.mitmproxy
 
+# to build falcon-apispec we need to install setuptools
+RUN pip install setuptools>=40.8.0
+
 COPY --from=wheelbuilder /wheels /wheels
 RUN pip install --no-index --find-links=/wheels mitmproxy
 RUN rm -rf /wheels
