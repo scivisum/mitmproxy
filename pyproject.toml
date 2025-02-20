@@ -247,6 +247,7 @@ exclude = [
     "^docs/",
     "^release/build/",
     "^examples/contrib/",
+    "^mitmproxy/addons/browserup/",
 ]
 
 [[tool.mypy.overrides]]
