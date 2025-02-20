@@ -816,6 +816,11 @@ class HttpStream(layer.Layer):
             yield from self.child_layer.handle_event(events.Start())
         else:
             yield HttpConnectErrorHook(self.flow)
+            # tribe: change
+            # leave the ConnectErrorHook too, because http fires them both.
+            if self.flow.server_conn.error:
+                self.flow.error = flow.Error(self.flow.server_conn.error)
+                yield HttpErrorHook(self.flow)
             self.client_state = self.state_errored
             self.flow.live = False
 
