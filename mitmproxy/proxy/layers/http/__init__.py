@@ -126,7 +126,7 @@ class GetHttpConnection(HttpCommand):
 @dataclass
 class GetHttpConnectionCompleted(events.CommandCompleted):
     command: GetHttpConnection
-    reply: tuple[None, str] | tuple[Connection, None]
+    reply: tuple[None, str] | tuple[Connection, None] | tuple[Connection, str]
     """connection object, error message"""
 
 
@@ -1151,7 +1151,7 @@ class HttpLayer(layer.Layer):
     ) -> layer.CommandGenerator[None]:
         waiting = self.waiting_for_establishment.pop(command.connection)
 
-        reply: tuple[None, str] | tuple[Connection, None]
+        reply: tuple[None, str] | tuple[Connection, None] | tuple[Connection, str]
         if command.err:
             # tribe: return the connection that errored, so we can access the connection times.
             reply = (command.connection, command.err)
