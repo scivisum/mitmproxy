@@ -78,6 +78,7 @@ class BlockList:
                 flow.metadata["blocklisted"] = True
                 if spec.status_code == NO_RESPONSE:
                     flow.kill()
+                    return
                 else:
                     flow.response = http.Response.make(
                         spec.status_code, headers={"Server": version.MITMPROXY}
