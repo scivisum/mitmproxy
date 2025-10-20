@@ -45,16 +45,8 @@ jobs:
         include:
           - os: ubuntu-latest
             py: "3.13"
-          - os: windows-latest
-            py: "3.13"
           - os: macos-latest
             py: "3.13"
-          - os: ubuntu-latest
-            py: "3.12"
-          - os: ubuntu-latest
-            py: "3.11"
-          - os: ubuntu-latest
-            py: "3.10"
     runs-on: ${{ matrix.os }}
     steps:
       - run: printenv
@@ -98,12 +90,8 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - image: macos-14
+          - image: macos-16
             platform: macos-arm64
-          - image: macos-13
-            platform: macos-x86_64
-          - image: windows-2019
-            platform: windows
           - image: ubuntu-20.04  # Oldest available version so we get oldest glibc possible.
             platform: linux
     runs-on: ${{ matrix.image }}
@@ -265,7 +253,6 @@ jobs:
     - test-web-ui
     - build
     - build-wheel
-    - build-windows-installer
     - docs
     uses: mhils/workflows/.github/workflows/alls-green.yml@v11
     with:
